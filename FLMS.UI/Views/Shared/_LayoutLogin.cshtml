@@ -1,0 +1,65 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Medical Report System</title>
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/vendor/fonts/circular-std/style.css" />
+    <link rel="stylesheet" href="~/assets/libs/css/style-light.css" />
+    <link rel="stylesheet" href="~/assets/vendor/fonts/fontawesome/css/fontawesome-all.css" />
+    <link rel="stylesheet" href="~/assets/vendor/charts/chartist-bundle/chartist.css" />
+    <link rel="stylesheet" href="~/assets/vendor/charts/morris-bundle/morris.css" />
+    <link rel="stylesheet" href="~/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="~/assets/vendor/charts/c3charts/c3.css" />
+    <link rel="stylesheet" href="~/assets/vendor/fonts/flag-icon-css/flag-icon.min.css" />
+    <link rel="stylesheet" href="~/assets/vendor/datatables/css/dataTables.bootstrap4.css" />
+    <link rel="stylesheet" href="~/assets/vendor/datatables/css/buttons.bootstrap4.css" />
+    <link rel="stylesheet" href="~/assets/vendor/datatables/css/select.bootstrap4.css" />
+    <link rel="stylesheet" href="~/assets/vendor/datatables/css/fixedHeader.bootstrap4.css" />
+    <link rel="stylesheet" href="/assets/libs/css/select2.min.css" />
+    <link rel="stylesheet" href="~/assets/libs/css/main.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="~/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/assets/libs/js/jquery-ui.js"></script>
+    @*<script src="~/Scripts/bootstrap-wysiwyg.js"></script>*@
+    <link rel="stylesheet" href="~/assets/libs/css/index.css" />
+    <!-- bootstap bundle js -->
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <style>
+        @@media (min-width: 992px) {
+            .modal-dialog {
+                max-width: 60%;
+            }
+        }
+    </style>
+</head>
+<body style="background-image: url('../images/bg.jpg');">
+    <div class="splash-container" style="margin-top:50px">
+        @RenderBody()
+        <hr />
+        <div class="footer" id="footer">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                Copyright © 2020 Synergy IT. All rights reserved.
+            </div>
+        </div>
+    </div>
+
+    <script src="~/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="~/assets/libs/js/main-js.js"></script>
+    <script src="~/assets/vendor/charts/chartist-bundle/chartist.min.js"></script>
+    <script src="~/assets/vendor/charts/sparkline/jquery.sparkline.js"></script>
+    <script src="~/assets/vendor/charts/morris-bundle/raphael.min.js"></script>
+    <script src="~/assets/vendor/charts/morris-bundle/morris.js"></script>
+    <script src="~/assets/libs/js/dataTables.min.js"></script>
+    <script src="~/assets/vendor/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/assets/vendor/datatables/js/data-table.js"></script>
+    <script src="~/assets/libs/js/select2.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
