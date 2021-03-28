@@ -13,7 +13,7 @@ namespace FLMS.BAL
     {
         public List<T> GetList<T>() where T : class
         {
-            using (MRSEntities entities = new MRSEntities())
+            using (FLMSEntities entities = new FLMSEntities())
             {
                 return entities.Set<T>().ToList();
             }
@@ -21,7 +21,7 @@ namespace FLMS.BAL
 
         public void SaveOrUpdate<T>(T t, int id) where T : class
         {
-            using (MRSEntities entities = new MRSEntities())
+            using (FLMSEntities entities = new FLMSEntities())
             {
                 if (id == 0)
                 {

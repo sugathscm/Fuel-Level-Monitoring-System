@@ -1,7 +1,15 @@
-﻿
-@{
-    ViewBag.Title = "_PageHeaderPartial";
-}
+﻿<div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 m-b-10">
+        <div class="page-header">
+            <h2 class="pageheader-title">@ViewBag.Title Management</h2>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 pull-right">
+        @if (TempData["Message"] != null)
+        {
+            @Html.Raw(TempData["Message"])
+        }
+    </div>
+</div>
 
-<h2>_PageHeaderPartial</h2>
 
