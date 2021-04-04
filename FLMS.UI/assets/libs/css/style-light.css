@@ -7340,7 +7340,6 @@ select.form-control:not([size]):not([multiple]) {
 
 body {
     padding-bottom: 20px;
-    background-image: url('../images/bg.jpg');
     background-color: #e9ecef;
     background-repeat: no-repeat;
     background-attachment: fixed;

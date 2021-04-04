@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fba1f056a9334db5bd03da4db6815bb9" Name="Diagram1">
-        <EntityTypeShape EntityType="FLMSModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+      <Diagram DiagramId="fba1f056a9334db5bd03da4db6815bb9" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="FLMSModel.C__MigrationHistory" Width="1.5" PointX="1.25" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FLMSModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FLMSModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="FLMSModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
@@ -13,6 +13,41 @@
         <AssociationConnector Association="FLMSModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="FLMSModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="FLMSModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FLMSModel.Depot" Width="1.5" PointX="7.875" PointY="0.5" />
+        <EntityTypeShape EntityType="FLMSModel.DepotTank" Width="1.5" PointX="7.875" PointY="3.5" />
+        <EntityTypeShape EntityType="FLMSModel.DepotType" Width="1.5" PointX="9.875" PointY="0.5" />
+        <EntityTypeShape EntityType="FLMSModel.FuelType" Width="1.5" PointX="0.875" PointY="9.5" />
+        <EntityTypeShape EntityType="FLMSModel.Geolocation" Width="1.5" PointX="9.875" PointY="3.5" />
+        <EntityTypeShape EntityType="FLMSModel.Organization" Width="1.5" PointX="5.875" PointY="9.5" />
+        <EntityTypeShape EntityType="FLMSModel.SensorDevice" Width="1.5" PointX="7.875" PointY="9.5" />
+        <EntityTypeShape EntityType="FLMSModel.Supplier" Width="1.5" PointX="9.875" PointY="9.5" />
+        <EntityTypeShape EntityType="FLMSModel.Tank" Width="1.5" PointX="3.375" PointY="9.625" />
+        <EntityTypeShape EntityType="FLMSModel.TankFuelLevel" Width="1.5" PointX="10.875" PointY="6.5" />
+        <EntityTypeShape EntityType="FLMSModel.Driver" Width="1.5" PointX="9.875" PointY="15.875" />
+        <EntityTypeShape EntityType="FLMSModel.FleetTracking" Width="1.5" PointX="12.125" PointY="2" />
+        <EntityTypeShape EntityType="FLMSModel.GPSDevice" Width="1.5" PointX="12.125" PointY="9.625" />
+        <EntityTypeShape EntityType="FLMSModel.Vehicle" Width="1.5" PointX="9.875" PointY="13.125" />
+        <AssociationConnector Association="FLMSModel.FK_Depot_DepotType" />
+        <AssociationConnector Association="FLMSModel.FK_Depot_Geolocation" />
+        <AssociationConnector Association="FLMSModel.FK_DepotTank_SensorDevice" />
+        <AssociationConnector Association="FLMSModel.FK_DepotTank_Tank" />
+        <AssociationConnector Association="FLMSModel.FK_TankFuelLevel_DepotTank" />
+        <AssociationConnector Association="FLMSModel.FK_FleetTracking_Driver" />
+        <AssociationConnector Association="FLMSModel.FK_FleetTracking_FromGeolocation" />
+        <AssociationConnector Association="FLMSModel.FK_FleetTracking_ToGeolocation" />
+        <AssociationConnector Association="FLMSModel.FK_FleetTracking_Vehicle" />
+        <AssociationConnector Association="FLMSModel.FK_Tank_FuelType" />
+        <AssociationConnector Association="FLMSModel.FK_GPSDevice_Supplier" />
+        <AssociationConnector Association="FLMSModel.FK_SensorDevice_Supplier" />
+        <EntityTypeShape EntityType="FLMSModel.City" Width="1.5" PointX="7.625" PointY="13.75" />
+        <EntityTypeShape EntityType="FLMSModel.Country" Width="1.5" PointX="0.875" PointY="13.75" />
+        <EntityTypeShape EntityType="FLMSModel.District" Width="1.5" PointX="5.375" PointY="13.75" />
+        <EntityTypeShape EntityType="FLMSModel.Province" Width="1.5" PointX="3.125" PointY="13.75" />
+        <AssociationConnector Association="FLMSModel.FK_City_District" />
+        <AssociationConnector Association="FLMSModel.FK_Geolocation_City" />
+        <AssociationConnector Association="FLMSModel.FK_Province_Country" />
+        <AssociationConnector Association="FLMSModel.FK_District_Province" />
+        <AssociationConnector Association="FLMSModel.FK_Vehicle_GPSDevice" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

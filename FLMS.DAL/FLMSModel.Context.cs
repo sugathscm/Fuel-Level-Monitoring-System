@@ -30,5 +30,23 @@ namespace FLMS.DAL
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Depot> Depots { get; set; }
+        public virtual DbSet<DepotTank> DepotTanks { get; set; }
+        public virtual DbSet<DepotType> DepotTypes { get; set; }
+        public virtual DbSet<FuelType> FuelTypes { get; set; }
+        public virtual DbSet<Geolocation> Geolocations { get; set; }
+        public virtual DbSet<Organization> Organizations { get; set; }
+        public virtual DbSet<SensorDevice> SensorDevices { get; set; }
+        public virtual DbSet<Supplier> Suppliers { get; set; }
+        public virtual DbSet<Tank> Tanks { get; set; }
+        public virtual DbSet<TankFuelLevel> TankFuelLevels { get; set; }
+        public virtual DbSet<Driver> Drivers { get; set; }
+        public virtual DbSet<FleetTracking> FleetTrackings { get; set; }
+        public virtual DbSet<GPSDevice> GPSDevices { get; set; }
+        public virtual DbSet<Vehicle> Vehicles { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<District> Districts { get; set; }
+        public virtual DbSet<Province> Provinces { get; set; }
     }
 }

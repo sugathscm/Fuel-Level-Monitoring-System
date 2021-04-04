@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Medical Report System</title>
+    <title>@ViewBag.Title - Fuel Level Monitoring System</title>
     @*@Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")*@
 
@@ -25,8 +25,11 @@
     <link rel="stylesheet" href="~/assets/libs/css/main.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-    <script src="~/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    @*<script src="~/assets/vendor/jquery/jquery-3.3.1.min.js"></script>*@
     <script src="/assets/libs/js/jquery-ui.js"></script>
+    <script src="/assets/libs/js/waterTank.min.js"></script>
     @*<script src="~/Scripts/bootstrap-wysiwyg.js"></script>*@
     <link rel="stylesheet" href="~/assets/libs/css/index.css" />
     <!-- bootstap bundle js -->
@@ -39,7 +42,7 @@
         }
     </style>
 </head>
-<body style="background-image: url('../../images/bg.jpg');">
+<body>
     @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -69,7 +72,7 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="~/home">MRS</a>
+                <a class="navbar-brand" href="~/home">FLMS</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -96,102 +99,60 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav flex-column">
+                            <li>
+                                <a class="nav-link" href="~/Home"><i class="fa fa-fw fa-dashcube"></i>Dashboard</a>
+                            </li>
                             <li class="nav-divider">
                                 Administration
                             </li>
                             <li>
-                                <a class="nav-link" href="~/Consultant"><i class="fa fa-fw fa-user-md"></i>Consultant List</a>
-                            </li>
-                            <li class="nav-divider">
-                                Medical Reports
-                            </li>
-                            <li>
-                                <a class="nav-link" href="~/Report"><i class="fa fa-fw fa-briefcase-medical"></i>Past Reports</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="~/Report/Details"><i class="fa fa-fw fa-notes-medical"></i>New Report</a>
-                            </li>
-                            <li class="nav-divider">
-                                Master Data
+                                <a class="nav-link" href="~/Organization"><i class="fa fa-fw fa-user-md"></i>Organization Details</a>
                             </li>
                             <li>
                                 <a class="nav-link" href="~/AccountUser"><i class="fa fa-fw fa-users"></i>User Management</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="~/Hospital"><i class="fa fa-fw fa-hospital"></i>Hospital Management</a>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#settings" aria-controls="master"><i class="fa fa-fw fa-cogs"></i>Settings</a>
                                 <div id="settings" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="~/Speciality">Consultant Speciality List</a>
+                                            <a class="nav-link" href="~/Province">Province List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="~/Consultant">Consultant List</a>
+                                            <a class="nav-link" href="~/District">District List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="~/Indication">Indication List</a>
+                                            <a class="nav-link" href="~/City">City List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="~/Location">Location List</a>
+                                            <a class="nav-link" href="~/Geolocation">Geolocation List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="~/ImageQuality">Image Quality List</a>
+                                            <a class="nav-link" href="~/FuelType">Fuel Type List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="~/Comorbidity">Comorbidity List</a>
+                                            <a class="nav-link" href="~/DepotType">Depot Type List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="~/LVH">LVH List</a>
+                                            <a class="nav-link" href="~/Tank">Tank List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="~/LV">Left Ventricle List</a>
+                                            <a class="nav-link" href="~/Depot">Depot List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="~/LVEF">LV Function (EF) List</a>
+                                            <a class="nav-link" href="~/Supplier">Supplier List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="~/RWMA">RWMA List</a>
+                                            <a class="nav-link" href="~/SensorDevice">Sensor Device List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="~/Diastolic">Diastolic List</a>
+                                            <a class="nav-link" href="~/GPSDevice">GPS Device List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="~/LA">Left Atrium List</a>
+                                            <a class="nav-link" href="~/Vehicle">Vehicle List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="~/LAData">LA Echo Contrast List</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="~/RA">Right Atrium List</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="~/RV">Right Ventricle List</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="~/RVFunction">RV Function List</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="~/MitralValve">Mitral Valve List</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="~/AorticValve">Aortic Valve List</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="~/TricuspidValve">Tricuspid Valve List</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="~/IASIVSPDA">IAS/IVS/PDA List</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="~/Pericardium">Pericardium List</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="~/Diagnosis">Diagnosis List</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="~/Suggestion">Suggestion List</a>
+                                            <a class="nav-link" href="~/Driver">Driver List</a>
                                         </li>
                                     </ul>
                                 </div>

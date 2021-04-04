@@ -65,8 +65,31 @@
     <Compile Include="AspNetUserLogin.cs">
       <DependentUpon>FLMSModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
+    <Compile Include="City.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Country.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Depot.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DepotTank.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DepotType.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="District.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Driver.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FleetTracking.cs">
       <DependentUpon>FLMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FLMSModel.Context.cs">
@@ -84,7 +107,37 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FLMSModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="FuelType.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Geolocation.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GPSDevice.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Organization.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Province.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SensorDevice.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tank.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TankFuelLevel.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vehicle.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
