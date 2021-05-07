@@ -100,7 +100,7 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav flex-column">
                             <li>
-                                <a class="nav-link" href="~/Home"><i class="fa fa-fw fa-dashcube"></i>Dashboard</a>
+                                <a class="nav-link" href="~/Home"><i class="fa fa-fw fa-tachometer-alt"></i>Dashboard</a>
                             </li>
                             <li class="nav-divider">
                                 Administration
@@ -192,7 +192,13 @@
             <!-- ============================================================== -->
         </div>
     </div>
-
+    <script>
+        $(document).ready(function () {
+            $('select').select2({
+                selectOnClose: true
+            });
+        });
+    </script>
     @*@Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")*@
     <script src="~/assets/vendor/slimscroll/jquery.slimscroll.js"></script>

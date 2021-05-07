@@ -1,7 +1,7 @@
 ﻿
-@model FLMS.DAL.Province
+@model FLMS.DAL.DepotType
 @{
-    ViewBag.Title = "Province";
+    ViewBag.Title = "DepotType";
 }
 
 <script type="text/javascript">
@@ -10,7 +10,7 @@
             "paging": true,
 
             "ajax": {
-                "url": "/Province/GetList",
+                "url": "/DepotType/GetList",
                 "type": "POST",
                 "datatype": "json"
             },
@@ -28,7 +28,7 @@
                 {
                     "data": "Id", "searchable": false, "ordering": false,
                     "render": function (data, type, full, meta) {
-                        return '<a class="btn btn-primary btn-xs" href="/Province/Index/' + data + '">Edit</a>';
+                        return '<a class="btn btn-primary btn-xs" href="/DepotType/Index/' + data + '">Edit</a>';
                     }
                 },
             ]
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                    @using (Html.BeginForm("SaveOrUpdate", "Province", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    @using (Html.BeginForm("SaveOrUpdate", "DepotType", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary("", new { @class = "valFailure" })
@@ -92,4 +92,6 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
 

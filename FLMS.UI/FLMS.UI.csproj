@@ -169,17 +169,30 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CityController.cs" />
+    <Compile Include="Controllers\DepotController.cs" />
+    <Compile Include="Controllers\DepotTypeController.cs" />
     <Compile Include="Controllers\DistrictController.cs" />
+    <Compile Include="Controllers\FuelTypeController.cs" />
+    <Compile Include="Controllers\GeolocationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProvinceController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\TankController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseViewModel.cs" />
+    <Compile Include="Models\CityViewModel.cs" />
+    <Compile Include="Models\DepotViewModel.cs" />
+    <Compile Include="Models\DistrictViewModel.cs" />
+    <Compile Include="Models\GeolocationViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\SupplierViewModel.cs" />
+    <Compile Include="Models\TankViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceData.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -238,6 +251,7 @@
     <Content Include="assets\libs\js\jvectormap.custom.js" />
     <Content Include="assets\libs\js\main-js.js" />
     <Content Include="assets\libs\js\select2.min.js" />
+    <Content Include="assets\libs\js\waterTank.min.js" />
     <Content Include="assets\vendor\bootstrap-colorpicker\%40claviska\jquery-minicolors\jquery.minicolors.css" />
     <Content Include="assets\vendor\bootstrap-colorpicker\%40claviska\jquery-minicolors\jquery.minicolors.min.js" />
     <Content Include="assets\vendor\bootstrap-colorpicker\%40claviska\jquery-minicolors\jquery.minicolors.png" />
@@ -588,7 +602,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Controllers\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
@@ -679,15 +693,22 @@
     <Content Include="Views\Shared\_PageHeaderPartial.cshtml" />
     <Content Include="Views\District\Index.cshtml" />
     <Content Include="Views\Province\Index.cshtml" />
+    <Content Include="Views\City\Index.cshtml" />
+    <Content Include="Views\Geolocation\Index.cshtml" />
+    <Content Include="Views\FuelType\Index.cshtml" />
+    <Content Include="Views\DepotType\Index.cshtml" />
+    <Content Include="Views\Tank\Index.cshtml" />
+    <Content Include="Views\Depot\Index.cshtml" />
+    <Content Include="Views\Supplier\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Controllers\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Controllers\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Controllers\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Controllers\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />

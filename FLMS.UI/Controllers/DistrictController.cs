@@ -18,6 +18,7 @@ namespace WFM.UI.Controllers
     {
         private ApplicationUserManager _userManager;
         private readonly GenericService genericService = new GenericService();
+        private readonly DistrictService districtService = new DistrictService();
 
         public DistrictController()
         {
@@ -43,26 +44,30 @@ namespace WFM.UI.Controllers
         // GET: Districts
         public ActionResult Index(int? id)
         {
-            District diastolic = new District();
+            District district = new District();
             if (id != null)
             {
-                diastolic = genericService.GetList<District>().Where(o => o.Id == id).FirstOrDefault();
+                district = districtService.GetDistrictById(id);
             }
 
             ViewBag.ProvinceList = new SelectList(genericService.GetList<Province>(), "Id", "Name");
 
-            return View(diastolic);
+            return View(district);
         }
 
         public ActionResult GetList()
         {
-            List<District> list = genericService.GetList<District>();
+            List<District> list = districtService.GetDistrictList();
 
-            List<BaseViewModel> modelList = new List<BaseViewModel>();
+            List<DistrictViewModel> modelList = new List<DistrictViewModel>();
 
             foreach (var item in list)
             {
-                modelList.Add(new BaseViewModel() { Id = item.Id, IsActive = item.IsActive, Name = item.Name });
+                modelList.Add(new DistrictViewModel() { Id = item.Id, 
+                    IsActive = item.IsActive, 
+                    Name = item.Name, 
+                    ProvinceName = item.Province.Name
+                });
             }
             return Json(new { data = modelList }, JsonRequestBehavior.AllowGet);
         }
@@ -77,23 +82,24 @@ namespace WFM.UI.Controllers
             try
             {
                 int id = model.Id;
-                District diastolic = null;
+                District district = null;
                 District oldDistrict = null;
                 if (model.Id == 0)
                 {
-                    diastolic = new District
+                    district = new District
                     {
                         Name = model.Name,
-                        IsActive = true
+                        IsActive = true,
+                        ProvinceId = model.ProvinceId
                     };
 
                     oldDistrict = new District();
                     oldData = new JavaScriptSerializer().Serialize(oldDistrict);
-                    newData = new JavaScriptSerializer().Serialize(diastolic);
+                    newData = new JavaScriptSerializer().Serialize(district);
                 }
                 else
                 {
-                    diastolic = genericService.GetList<District>().Where(o => o.Id == model.Id).FirstOrDefault();
+                    district = genericService.GetList<District>().Where(o => o.Id == model.Id).FirstOrDefault();
                     oldDistrict = genericService.GetList<District>().Where(o => o.Id == model.Id).FirstOrDefault();
 
                     oldData = new JavaScriptSerializer().Serialize(new District()
@@ -103,19 +109,20 @@ namespace WFM.UI.Controllers
                         IsActive = oldDistrict.IsActive
                     });
 
-                    diastolic.Name = model.Name;
+                    district.Name = model.Name;
                     bool Example = Convert.ToBoolean(Request.Form["IsActive.Value"]);
-                    diastolic.IsActive = model.IsActive;
+                    district.IsActive = model.IsActive;
+                    district.ProvinceId = model.ProvinceId;
 
                     newData = new JavaScriptSerializer().Serialize(new District()
                     {
-                        Id = diastolic.Id,
-                        Name = diastolic.Name,
-                        IsActive = diastolic.IsActive
+                        Id = district.Id,
+                        Name = district.Name,
+                        IsActive = district.IsActive
                     });
                 }
 
-                genericService.SaveOrUpdate<District>(diastolic, diastolic.Id);
+                genericService.SaveOrUpdate<District>(district, district.Id);
 
                 //CommonService.SaveDataAudit(new DataAudit()
                 //{
