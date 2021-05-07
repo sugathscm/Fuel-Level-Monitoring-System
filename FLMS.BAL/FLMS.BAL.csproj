@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="CityService.cs" />
     <Compile Include="DepotService.cs" />
+    <Compile Include="DepotTankService.cs" />
     <Compile Include="DistrictService.cs" />
     <Compile Include="GenericService.cs" />
     <Compile Include="GeolocationService.cs" />

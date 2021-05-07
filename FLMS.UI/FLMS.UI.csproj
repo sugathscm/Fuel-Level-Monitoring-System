@@ -169,8 +169,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountUserController.cs" />
     <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\DepotController.cs" />
+    <Compile Include="Controllers\DepotTankController.cs" />
     <Compile Include="Controllers\DepotTypeController.cs" />
     <Compile Include="Controllers\DistrictController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
@@ -178,6 +180,7 @@
     <Compile Include="Controllers\GeolocationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\ProvinceController.cs" />
     <Compile Include="Controllers\SensorDeviceController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
@@ -189,6 +192,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseViewModel.cs" />
     <Compile Include="Models\CityViewModel.cs" />
+    <Compile Include="Models\DepotTankViewModel.cs" />
     <Compile Include="Models\DepotViewModel.cs" />
     <Compile Include="Models\DistrictViewModel.cs" />
     <Compile Include="Models\DriverViewModel.cs" />
@@ -197,9 +201,11 @@
     <Compile Include="Models\GPSDeviceViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OrganizationViewModel.cs" />
     <Compile Include="Models\SensorDeviceViewModel.cs" />
     <Compile Include="Models\SupplierViewModel.cs" />
     <Compile Include="Models\TankViewModel.cs" />
+    <Compile Include="Models\UsersInRoleViewModel.cs" />
     <Compile Include="Models\VehicleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceData.Designer.cs">
@@ -712,6 +718,9 @@
     <Content Include="Views\GPSDevice\Index.cshtml" />
     <Content Include="Views\Vehicle\Index.cshtml" />
     <Content Include="Views\Driver\Index.cshtml" />
+    <Content Include="Views\AccountUser\Index.cshtml" />
+    <Content Include="Views\Organization\Index.cshtml" />
+    <Content Include="Views\DepotTank\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

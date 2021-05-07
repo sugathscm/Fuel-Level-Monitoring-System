@@ -1,0 +1,69 @@
+﻿@model IEnumerable<FLMS.UI.Models.UsersInRoleViewModel>
+
+@{
+    ViewBag.Title = "User Management";
+}
+
+<div class="dashboard-ecommerce">
+    <div class="container-fluid dashboard-content ">
+        <!-- ============================================================== -->
+        <!-- pageheader  -->
+        <!-- ============================================================== -->
+        @Html.Partial("_PageHeaderPartial")
+        <!-- ============================================================== -->
+        <!-- end pageheader  -->
+        <!-- ============================================================== -->
+        <div class="border border-primary bg-actual-white">
+            <!-- ============================================================== -->
+            <!-- end pageheader  -->
+            <!-- ============================================================== -->
+            <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-20">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 m-t-20">
+                    <div class="form-group">
+                        <p>
+                            <input type="button" value="Add User" onclick="location.href='Account/Register'" class="btn btn-success" />
+                        </p>
+                        <div class="col-md-12">
+                            <table class="table table-striped table-bordered first" id="UserList">
+                                <thead>
+                                    <tr>
+                                        <td><b>Username</b></td>
+                                        <td><b>Email</b></td>
+                                        <td><b>Roles</b></td>
+                                    </tr>
+                                </thead>
+                                @foreach (var user in Model)
+                                {
+                                    <tr>
+                                        <td>@user.Username</td>
+                                        <td>@user.Email</td>
+                                        <td>@user.Role</td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                        <div class="panel-footer">
+                            <p class="box-title"><b>Total Users till @String.Format("{0 : dddd, MMMM d, yyyy}", DateTime.Now)  : </b><span class="label label-primary">@Model.Count()</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#UserList").DataTable();
+            //$('#example2').DataTable({
+            //    "paging": true,
+            //    "lengthChange": true,
+            //    "searching": true,
+            //    "ordering": true,
+            //    "info": true,
+            //    "autoWidth": true
+            //});
+        });
+    </script>
+}
