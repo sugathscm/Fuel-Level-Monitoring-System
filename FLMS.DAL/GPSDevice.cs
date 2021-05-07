@@ -24,6 +24,7 @@ namespace FLMS.DAL
         public string Model { get; set; }
         public string SerialNumber { get; set; }
         public Nullable<int> SupplierId { get; set; }
+        public bool IsActive { get; set; }
     
         public virtual Supplier Supplier { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

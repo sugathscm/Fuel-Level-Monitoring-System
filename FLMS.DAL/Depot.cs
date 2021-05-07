@@ -14,6 +14,12 @@ namespace FLMS.DAL
     
     public partial class Depot
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Depot()
+        {
+            this.DepotTanks = new HashSet<DepotTank>();
+        }
+    
         public int Id { get; set; }
         public string Code { get; set; }
         public Nullable<int> GeolocationId { get; set; }
@@ -22,5 +28,7 @@ namespace FLMS.DAL
     
         public virtual DepotType DepotType { get; set; }
         public virtual Geolocation Geolocation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DepotTank> DepotTanks { get; set; }
     }
 }

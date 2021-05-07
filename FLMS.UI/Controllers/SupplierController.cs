@@ -49,7 +49,15 @@ namespace WFM.UI.Controllers
             {
                 Supplier supplier = new Supplier();
                 supplier = genericService.GetList<Supplier>().Where(o => o.Id == id).FirstOrDefault();
-
+                supplierViewModel = new SupplierViewModel()
+                {
+                    Id = supplier.Id,
+                    IsActive = supplier.IsActive,
+                    Name = supplier.Name,
+                    Address = supplier.Address,
+                    Website = supplier.Website,
+                    ContactDetails = supplier.ContactDetails
+                };
             }
 
             return View(supplierViewModel);

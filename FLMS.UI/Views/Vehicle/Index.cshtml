@@ -1,7 +1,7 @@
 ﻿
-@model FLMS.UI.Models.SupplierViewModel
+@model FLMS.UI.Models.VehicleViewModel
 @{
-    ViewBag.Title = "Supplier";
+    ViewBag.Title = "GPS Device";
 }
 
 <script type="text/javascript">
@@ -10,15 +10,14 @@
             "paging": true,
 
             "ajax": {
-                "url": "/Supplier/GetList",
+                "url": "/Vehicle/GetList",
                 "type": "POST",
                 "datatype": "json"
             },
             "columns": [
-                { "data": "Name" },
-                { "data": "Address" },
-                { "data": "Website" },
-                { "data": "ContactDetails" },
+                { "data": "VehicleNo" },
+                { "data": "Capacity" },
+                { "data": "GPSDeviceSN" },
                 {
                     "data": "IsActive",
                     "render": function (data, type, full, meta) {
@@ -31,7 +30,7 @@
                 {
                     "data": "Id", "searchable": false, "ordering": false,
                     "render": function (data, type, full, meta) {
-                        return '<a class="btn btn-primary btn-xs" href="/Supplier/Index/' + data + '">Edit</a>';
+                        return '<a class="btn btn-primary btn-xs" href="/Vehicle/Index/' + data + '">Edit</a>';
                     }
                 },
             ]
@@ -54,10 +53,9 @@
                         <table id="List" class="table table-striped table-bordered first">
                             <thead>
                                 <tr>
-                                    <th style="width:25%">Name</th>
-                                    <th style="width:25%">Address</th>
-                                    <th style="width:25%">Website</th>
-                                    <th style="width:25%">Contact Details</th>
+                                    <th style="width:33%">Vehicle No</th>
+                                    <th style="width:33%">Capacity (g)</th>
+                                    <th style="width:33%">GPS Device SN</th>
                                     <th></th>
                                     <th></th>
                                 </tr>
@@ -66,33 +64,27 @@
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                    @using (Html.BeginForm("SaveOrUpdate", "Supplier", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    @using (Html.BeginForm("SaveOrUpdate", "Vehicle", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary("", new { @class = "valFailure" })
                         @Html.HiddenFor(m => m.Id, new { @name = "Id" })
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+                            @Html.LabelFor(m => m.VehicleNo, new { @class = "col-md-2 control-label" })
                             <div class="col-md-12">
-                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", required = "required" })
+                                @Html.TextBoxFor(m => m.VehicleNo, new { @class = "form-control", required = "required" })
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Address, new { @class = "col-md-2 control-label" })
+                            @Html.LabelFor(m => m.Capacity, new { @class = "col-md-2 control-label" })
                             <div class="col-md-12">
-                                @Html.TextBoxFor(m => m.Address, new { @class = "form-control", required = "required" })
+                                @Html.TextBoxFor(m => m.Capacity, new { @class = "form-control", required = "required" })
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Website, new { @class = "col-md-2 control-label" })
+                            @Html.LabelFor(m => m.GPSDeviceSN, new { @class = "col-md-2 control-label" })
                             <div class="col-md-12">
-                                @Html.TextBoxFor(m => m.Website, new { @class = "form-control", required = "required" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.ContactDetails, new { @class = "col-md-2 control-label" })
-                            <div class="col-md-12">
-                                @Html.TextBoxFor(m => m.ContactDetails, new { @class = "form-control", required = "required" })
+                                @Html.DropDownList("GPSDeviceId", (SelectList)ViewBag.GPSDeviceList, "Select GPS Device", new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group">
@@ -116,4 +108,6 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
 

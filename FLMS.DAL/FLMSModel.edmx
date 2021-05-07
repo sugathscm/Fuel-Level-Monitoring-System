@@ -102,6 +102,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SensorDeviceId" Type="int" />
           <Property Name="TankId" Type="int" />
+          <Property Name="DepotId" Type="int" />
         </EntityType>
         <EntityType Name="DepotType">
           <Key>
@@ -130,6 +131,7 @@
           <Property Name="NICNo" Type="nvarchar" MaxLength="50" />
           <Property Name="ContactNo" Type="nvarchar" MaxLength="50" />
           <Property Name="DLNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="FleetTracking">
           <Key>
@@ -170,6 +172,7 @@
           <Property Name="Model" Type="nvarchar" MaxLength="50" />
           <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="SupplierId" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Organization">
           <Key>
@@ -200,6 +203,7 @@
           <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="SupplierId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Supplier">
           <Key>
@@ -240,6 +244,7 @@
           <Property Name="VehicleNo" Type="nvarchar" MaxLength="50" />
           <Property Name="Capacity" Type="decimal" Precision="18" Scale="2" />
           <Property Name="GPSDeviceId" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_City_District">
           <End Role="District" Type="Self.District" Multiplicity="0..1" />
@@ -330,6 +335,18 @@
             </Principal>
             <Dependent Role="Depot">
               <PropertyRef Name="GeolocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DepotTank_Depot">
+          <End Role="Depot" Type="Self.Depot" Multiplicity="0..1" />
+          <End Role="DepotTank" Type="Self.DepotTank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Depot">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DepotTank">
+              <PropertyRef Name="DepotId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -553,6 +570,10 @@
           <AssociationSet Name="FK_Depot_Geolocation" Association="Self.FK_Depot_Geolocation">
             <End Role="Geolocation" EntitySet="Geolocation" />
             <End Role="Depot" EntitySet="Depot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DepotTank_Depot" Association="Self.FK_DepotTank_Depot">
+            <End Role="Depot" EntitySet="Depot" />
+            <End Role="DepotTank" EntitySet="DepotTank" />
           </AssociationSet>
           <AssociationSet Name="FK_DepotTank_SensorDevice" Association="Self.FK_DepotTank_SensorDevice">
             <End Role="SensorDevice" EntitySet="SensorDevice" />
@@ -810,6 +831,10 @@
             <End Role="GPSDevice" EntitySet="GPSDevices" />
             <End Role="Vehicle" EntitySet="Vehicles" />
           </AssociationSet>
+          <AssociationSet Name="FK_DepotTank_Depot" Association="FLMSModel.FK_DepotTank_Depot">
+            <End Role="Depot" EntitySet="Depots" />
+            <End Role="DepotTank" EntitySet="DepotTanks" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Depot">
           <Key>
@@ -822,6 +847,7 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="DepotType" Relationship="FLMSModel.FK_Depot_DepotType" FromRole="Depot" ToRole="DepotType" />
           <NavigationProperty Name="Geolocation" Relationship="FLMSModel.FK_Depot_Geolocation" FromRole="Depot" ToRole="Geolocation" />
+          <NavigationProperty Name="DepotTanks" Relationship="FLMSModel.FK_DepotTank_Depot" FromRole="Depot" ToRole="DepotTank" />
         </EntityType>
         <EntityType Name="DepotTank">
           <Key>
@@ -833,6 +859,8 @@
           <NavigationProperty Name="SensorDevice" Relationship="FLMSModel.FK_DepotTank_SensorDevice" FromRole="DepotTank" ToRole="SensorDevice" />
           <NavigationProperty Name="Tank" Relationship="FLMSModel.FK_DepotTank_Tank" FromRole="DepotTank" ToRole="Tank" />
           <NavigationProperty Name="TankFuelLevels" Relationship="FLMSModel.FK_TankFuelLevel_DepotTank" FromRole="DepotTank" ToRole="TankFuelLevel" />
+          <Property Name="DepotId" Type="Int32" />
+          <NavigationProperty Name="Depot" Relationship="FLMSModel.FK_DepotTank_Depot" FromRole="DepotTank" ToRole="Depot" />
         </EntityType>
         <EntityType Name="DepotType">
           <Key>
@@ -936,6 +964,7 @@
           <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DLNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="FleetTrackings" Relationship="FLMSModel.FK_FleetTracking_Driver" FromRole="Driver" ToRole="FleetTracking" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="FleetTracking">
           <Key>
@@ -964,6 +993,7 @@
           <Property Name="SupplierId" Type="Int32" />
           <NavigationProperty Name="Supplier" Relationship="FLMSModel.FK_GPSDevice_Supplier" FromRole="GPSDevice" ToRole="Supplier" />
           <NavigationProperty Name="Vehicles" Relationship="FLMSModel.FK_Vehicle_GPSDevice" FromRole="GPSDevice" ToRole="Vehicle" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Vehicle">
           <Key>
@@ -975,6 +1005,7 @@
           <Property Name="GPSDeviceId" Type="Int32" />
           <NavigationProperty Name="FleetTrackings" Relationship="FLMSModel.FK_FleetTracking_Vehicle" FromRole="Vehicle" ToRole="FleetTracking" />
           <NavigationProperty Name="GPSDevice" Relationship="FLMSModel.FK_Vehicle_GPSDevice" FromRole="Vehicle" ToRole="GPSDevice" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_Depot_DepotType">
           <End Type="FLMSModel.DepotType" Role="DepotType" Multiplicity="0..1" />
@@ -1224,6 +1255,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DepotTank_Depot">
+          <End Type="FLMSModel.Depot" Role="Depot" Multiplicity="0..1" />
+          <End Type="FLMSModel.DepotTank" Role="DepotTank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Depot">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DepotTank">
+              <PropertyRef Name="DepotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1307,6 +1350,7 @@
           <EntitySetMapping Name="DepotTanks">
             <EntityTypeMapping TypeName="FLMSModel.DepotTank">
               <MappingFragment StoreEntitySet="DepotTank">
+                <ScalarProperty Name="DepotId" ColumnName="DepotId" />
                 <ScalarProperty Name="TankId" ColumnName="TankId" />
                 <ScalarProperty Name="SensorDeviceId" ColumnName="SensorDeviceId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1402,6 +1446,7 @@
           <EntitySetMapping Name="Drivers">
             <EntityTypeMapping TypeName="FLMSModel.Driver">
               <MappingFragment StoreEntitySet="Driver">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="DLNo" ColumnName="DLNo" />
                 <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
                 <ScalarProperty Name="NICNo" ColumnName="NICNo" />
@@ -1428,6 +1473,7 @@
           <EntitySetMapping Name="GPSDevices">
             <EntityTypeMapping TypeName="FLMSModel.GPSDevice">
               <MappingFragment StoreEntitySet="GPSDevice">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
                 <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
@@ -1438,6 +1484,7 @@
           <EntitySetMapping Name="Vehicles">
             <EntityTypeMapping TypeName="FLMSModel.Vehicle">
               <MappingFragment StoreEntitySet="Vehicle">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="GPSDeviceId" ColumnName="GPSDeviceId" />
                 <ScalarProperty Name="Capacity" ColumnName="Capacity" />
                 <ScalarProperty Name="VehicleNo" ColumnName="VehicleNo" />

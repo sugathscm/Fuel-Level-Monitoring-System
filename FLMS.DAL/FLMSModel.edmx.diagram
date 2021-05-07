@@ -48,6 +48,7 @@
         <AssociationConnector Association="FLMSModel.FK_Province_Country" />
         <AssociationConnector Association="FLMSModel.FK_District_Province" />
         <AssociationConnector Association="FLMSModel.FK_Vehicle_GPSDevice" />
+        <AssociationConnector Association="FLMSModel.FK_DepotTank_Depot" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

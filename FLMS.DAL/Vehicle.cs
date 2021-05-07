@@ -24,6 +24,7 @@ namespace FLMS.DAL
         public string VehicleNo { get; set; }
         public Nullable<decimal> Capacity { get; set; }
         public Nullable<int> GPSDeviceId { get; set; }
+        public bool IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FleetTracking> FleetTrackings { get; set; }

@@ -23,10 +23,12 @@ namespace FLMS.DAL
         public int Id { get; set; }
         public Nullable<int> SensorDeviceId { get; set; }
         public Nullable<int> TankId { get; set; }
+        public Nullable<int> DepotId { get; set; }
     
         public virtual SensorDevice SensorDevice { get; set; }
         public virtual Tank Tank { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TankFuelLevel> TankFuelLevels { get; set; }
+        public virtual Depot Depot { get; set; }
     }
 }

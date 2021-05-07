@@ -56,8 +56,11 @@
     <Compile Include="DistrictService.cs" />
     <Compile Include="GenericService.cs" />
     <Compile Include="GeolocationService.cs" />
+    <Compile Include="GPSDeviceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SensorDeviceService.cs" />
     <Compile Include="TankService.cs" />
+    <Compile Include="VehicleService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FLMS.DAL\FLMS.DAL.csproj">
