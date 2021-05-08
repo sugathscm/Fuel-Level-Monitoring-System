@@ -49,6 +49,8 @@
         <AssociationConnector Association="FLMSModel.FK_District_Province" />
         <AssociationConnector Association="FLMSModel.FK_Vehicle_GPSDevice" />
         <AssociationConnector Association="FLMSModel.FK_DepotTank_Depot" />
+        <EntityTypeShape EntityType="FLMSModel.TankFuelLevelInputBatch" Width="1.5" PointX="3.375" PointY="6.875" />
+        <AssociationConnector Association="FLMSModel.FK_TankFuelLevel_TankFuelLevelInputBatch" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

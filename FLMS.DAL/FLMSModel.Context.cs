@@ -48,5 +48,6 @@ namespace FLMS.DAL
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<District> Districts { get; set; }
         public virtual DbSet<Province> Provinces { get; set; }
+        public virtual DbSet<TankFuelLevelInputBatch> TankFuelLevelInputBatches { get; set; }
     }
 }

@@ -235,6 +235,14 @@
           <Property Name="CurrentVolume" Type="decimal" Precision="18" Scale="0" />
           <Property Name="DateTimeLogged" Type="datetime" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="TankFuelLevelInputBatchId" Type="int" />
+        </EntityType>
+        <EntityType Name="TankFuelLevelInputBatch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateTimeLogged" Type="datetime" />
         </EntityType>
         <EntityType Name="Vehicle">
           <Key>
@@ -506,6 +514,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TankFuelLevel_TankFuelLevelInputBatch">
+          <End Role="TankFuelLevelInputBatch" Type="Self.TankFuelLevelInputBatch" Multiplicity="0..1" />
+          <End Role="TankFuelLevel" Type="Self.TankFuelLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TankFuelLevelInputBatch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TankFuelLevel">
+              <PropertyRef Name="TankFuelLevelInputBatchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Vehicle_GPSDevice">
           <End Role="GPSDevice" Type="Self.GPSDevice" Multiplicity="0..1" />
           <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
@@ -542,6 +562,7 @@
           <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tank" EntityType="Self.Tank" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TankFuelLevel" EntityType="Self.TankFuelLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TankFuelLevelInputBatch" EntityType="Self.TankFuelLevelInputBatch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_City_District" Association="Self.FK_City_District">
             <End Role="District" EntitySet="District" />
@@ -625,6 +646,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_TankFuelLevel_DepotTank" Association="Self.FK_TankFuelLevel_DepotTank">
             <End Role="DepotTank" EntitySet="DepotTank" />
+            <End Role="TankFuelLevel" EntitySet="TankFuelLevel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TankFuelLevel_TankFuelLevelInputBatch" Association="Self.FK_TankFuelLevel_TankFuelLevelInputBatch">
+            <End Role="TankFuelLevelInputBatch" EntitySet="TankFuelLevelInputBatch" />
             <End Role="TankFuelLevel" EntitySet="TankFuelLevel" />
           </AssociationSet>
           <AssociationSet Name="FK_Vehicle_GPSDevice" Association="Self.FK_Vehicle_GPSDevice">
@@ -835,6 +860,11 @@
             <End Role="Depot" EntitySet="Depots" />
             <End Role="DepotTank" EntitySet="DepotTanks" />
           </AssociationSet>
+          <EntitySet Name="TankFuelLevelInputBatches" EntityType="FLMSModel.TankFuelLevelInputBatch" />
+          <AssociationSet Name="FK_TankFuelLevel_TankFuelLevelInputBatch" Association="FLMSModel.FK_TankFuelLevel_TankFuelLevelInputBatch">
+            <End Role="TankFuelLevelInputBatch" EntitySet="TankFuelLevelInputBatches" />
+            <End Role="TankFuelLevel" EntitySet="TankFuelLevels" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Depot">
           <Key>
@@ -952,6 +982,8 @@
           <Property Name="DateTimeLogged" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="DepotTank" Relationship="FLMSModel.FK_TankFuelLevel_DepotTank" FromRole="TankFuelLevel" ToRole="DepotTank" />
+          <Property Name="TankFuelLevelInputBatchId" Type="Int32" />
+          <NavigationProperty Name="TankFuelLevelInputBatch" Relationship="FLMSModel.FK_TankFuelLevel_TankFuelLevelInputBatch" FromRole="TankFuelLevel" ToRole="TankFuelLevelInputBatch" />
         </EntityType>
         <EntityType Name="Driver">
           <Key>
@@ -1267,6 +1299,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TankFuelLevelInputBatch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateTimeLogged" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TankFuelLevels" Relationship="FLMSModel.FK_TankFuelLevel_TankFuelLevelInputBatch" FromRole="TankFuelLevelInputBatch" ToRole="TankFuelLevel" />
+        </EntityType>
+        <Association Name="FK_TankFuelLevel_TankFuelLevelInputBatch">
+          <End Type="FLMSModel.TankFuelLevelInputBatch" Role="TankFuelLevelInputBatch" Multiplicity="0..1" />
+          <End Type="FLMSModel.TankFuelLevel" Role="TankFuelLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TankFuelLevelInputBatch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TankFuelLevel">
+              <PropertyRef Name="TankFuelLevelInputBatchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1435,6 +1487,7 @@
           <EntitySetMapping Name="TankFuelLevels">
             <EntityTypeMapping TypeName="FLMSModel.TankFuelLevel">
               <MappingFragment StoreEntitySet="TankFuelLevel">
+                <ScalarProperty Name="TankFuelLevelInputBatchId" ColumnName="TankFuelLevelInputBatchId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="DateTimeLogged" ColumnName="DateTimeLogged" />
                 <ScalarProperty Name="CurrentVolume" ColumnName="CurrentVolume" />
@@ -1529,6 +1582,14 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TankFuelLevelInputBatches">
+            <EntityTypeMapping TypeName="FLMSModel.TankFuelLevelInputBatch">
+              <MappingFragment StoreEntitySet="TankFuelLevelInputBatch">
+                <ScalarProperty Name="DateTimeLogged" ColumnName="DateTimeLogged" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

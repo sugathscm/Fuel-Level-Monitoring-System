@@ -18,34 +18,44 @@
         margin: 0;
     }
 </style>
-<div class="wrap row">
-    <input type="hidden" id="hdnLevels" value="@ViewBag.TankLevels" />
-    @for (int i = 0; i < ViewBag.TankCount; i++)
-    {
-        <div class="col-lg-3">
-            <div class="tank fuel-tank-@i"></div>
-            <div class="tank-name-@i"></div>
-            <div class="tank-location-@i"></div>
+<div class="dashboard-ecommerce">
+    <div class="container-fluid dashboard-content">
+        <div class="border border-primary bg-actual-white">
+            <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-10 m-t-10">
+                <label class="col-md-2 control-label text-dark">Tank Depot Location (City)</label>
+                <div class="col-md-4">
+                    @Html.DropDownList("CityId", (SelectList)ViewBag.CityList, "Select City", new { @class = "form-control city" })
+                </div>
+            </div>
+            <div class="wrap row col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-t-20 tank-levels">
+                <input type="hidden" id="hdnLevels" value="@ViewBag.TankLevels" />
+                @for (int i = 0; i < ViewBag.TankCount; i++)
+                {
+                    <div class="col-lg-2">
+                        <div class="tank fuel-tank-@i"></div>
+                        <div class="tank-name-@i"></div>
+                        <div class="tank-location-@i"></div>
+                    </div>
+                }
+            </div>
         </div>
-    }
+    </div>
 </div>
 <script>
     $(document).ready(function () {
 
         var levels = JSON.parse($('#hdnLevels').val());
 
-        console.log(levels);
-
         for (var i = 0; i < levels.length; i++) {
             var levelObj = levels[i];
-            var levelValue = levelObj.level;
+            var levelValue = levelObj.Level;
             var levelColor = setFuelColor(levelValue);
-            console.log(levelObj.tankid);
-            $('.tank-name-' + i).html("Tank : " + levelObj.tankid);
-            $('.tank-location-' + i).html("Location : " + levelObj.location);
+
+            $('.tank-name-' + i).html("Tank : " + levelObj.TankCode);
+            $('.tank-location-' + i).html("Location : " + levelObj.Location);
             $('.fuel-tank-' + i).waterTank({
-                width: 210,
-                height: 180,
+                width: 100,
+                height: 120,
                 color: levelColor,
                 level: levelValue
             }).on('click', function (event) {
@@ -53,7 +63,50 @@
             });
         }
 
+        $(".city").change(function () {
+            var obj = { id: $(this).val() };
+            $.ajax({
+                url: "/Home/GetTankLevels",
+                type: "POST",
+                data: JSON.stringify(obj),
+                contentType: 'application/json',
+                success: function (result) {
+                    $('.tank-levels').html('');
+                    var levels = JSON.parse(result);
 
+                    var html = '';
+                    for (var i = 0; i < levels.length; i++) {
+                        var levelObj = levels[i];
+                        var levelValue = levelObj.Level;
+                        var levelColor = setFuelColor(levelValue);
+                        console.log(levelObj.TankCode);
+                        html += '<div class="col-lg-2">';
+                        html += '<div class="tank fuel-tank-' + i + '"></div>';
+                        html += '<div class="tank-name-' + i + '">Tank : ' + levelObj.TankCode + '</div>';
+                        html += '<div class="tank-location-' + i + '">Location : ' + levelObj.Location + '</div>';
+                        html += '</div>';
+
+
+                    }
+
+                    $('.tank-levels').html(html);
+
+                    for (var i = 0; i < levels.length; i++) {
+                        $('.fuel-tank-' + i).waterTank({
+                            width: 100,
+                            height: 120,
+                            color: levelColor,
+                            level: levelValue
+                        }).on('click', function (event) {
+                            //$(this).waterTank(Math.floor(Math.random() * 100) + 0 );
+                        });
+                    }
+                },
+                error: function (err) {
+                    alert(err.responseText);
+                }
+            });
+        });
     });
 
     function setFuelColor(levelValue) {

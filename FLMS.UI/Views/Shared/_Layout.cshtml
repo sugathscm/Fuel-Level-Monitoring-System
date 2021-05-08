@@ -72,14 +72,14 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="~/home">FLMS</a>
+                <a class="navbar-brand" href="~/home"><img class="logo-img" src="~/images/logo.png" alt="logo" width="50"></a>
+                <h2 style="color: #a4aadb"><b>Fuel Level Monitoring System</b></h2>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon" style="color:#FFF"></span>
                 </button>
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto navbar-right-top">
-                        <li>
-                            @ViewBag.Hospital
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto navbar-left-top">
+                        <li >
                         </li>
                         <li class="nav-item dropdown nav-user">
                             @Html.Partial("_LoginPartial")
@@ -106,7 +106,7 @@
                                 Administration
                             </li>
                             <li>
-                                <a class="nav-link" href="~/Organization"><i class="fa fa-fw fa-user-md"></i>Organization Details</a>
+                                <a class="nav-link" href="~/Organization"><i class="fa fa-fw fa-building"></i>Organization Details</a>
                             </li>
                             <li>
                                 <a class="nav-link" href="~/AccountUser"><i class="fa fa-fw fa-users"></i>User Management</a>
@@ -158,7 +158,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="nav-link" href="~/DepotTank"><i class="fa fa-fw fa-users"></i>Depot Tanks</a>
+                                <a class="nav-link" href="~/DepotTank"><i class="fa fa-fw fa-circle"></i>Depot Tanks</a>
                             </li>
                         </ul>
                     </div>
@@ -175,19 +175,8 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <div class="footer" id="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            Copyright © 2020 Synergy IT. All rights reserved.
-                        </div>
-                        @*<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="text-md-right footer-links d-none d-sm-block">
-                                    <a href="javascript: void(0);">About</a>
-                                    <a href="javascript: void(0);">Support</a>
-                                    <a href="javascript: void(0);">Contact Us</a>
-                                </div>
-                            </div>*@
-                    </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    Copyright © 2021 Group 6. All rights reserved.
                 </div>
             </div>
             <!-- ============================================================== -->

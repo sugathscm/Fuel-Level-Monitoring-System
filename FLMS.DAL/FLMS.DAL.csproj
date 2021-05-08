@@ -135,6 +135,9 @@
     <Compile Include="TankFuelLevel.cs">
       <DependentUpon>FLMSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TankFuelLevelInputBatch.cs">
+      <DependentUpon>FLMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Vehicle.cs">
       <DependentUpon>FLMSModel.tt</DependentUpon>
     </Compile>

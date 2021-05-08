@@ -19,7 +19,9 @@ namespace FLMS.DAL
         public Nullable<decimal> CurrentVolume { get; set; }
         public System.DateTime DateTimeLogged { get; set; }
         public bool IsActive { get; set; }
+        public Nullable<int> TankFuelLevelInputBatchId { get; set; }
     
         public virtual DepotTank DepotTank { get; set; }
+        public virtual TankFuelLevelInputBatch TankFuelLevelInputBatch { get; set; }
     }
 }
